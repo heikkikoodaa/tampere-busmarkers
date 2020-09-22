@@ -1,9 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import './App.css';
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-}
+require('dotenv').config();
 
 function App() {
   const [lat] = useState(61.4978);
