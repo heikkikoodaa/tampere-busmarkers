@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import './App.css';
-require('dotenv').config();
 
 function App() {
   const [lat] = useState(61.4978);
@@ -9,12 +8,6 @@ function App() {
   const [zoomLevel] = useState(13);
   const [vehicleData, setVehicleData] = useState([]);
   const position = [lat, lng];
-
-  useEffect(() => {
-    setInterval(() => {
-      getTransportData();
-    }, 5000)
-  }, [vehicleData]);
 
   const getTransportData = async () => {
     try {
@@ -26,9 +19,16 @@ function App() {
     catch (error) {console.error(error)};
   }
 
+  //Run this script, then the DOM has loaded, which gets transport data from the API
+  useEffect(() => {
+    getTransportData();
+  }, [vehicleData]);
 
   const markers = vehicleData.map(vehicle => (
-    <Marker position={[vehicle.monitoredVehicleJourney.vehicleLocation.latitude, vehicle.monitoredVehicleJourney.vehicleLocation.longitude]}>
+    <Marker
+      key={vehicle.monitoredVehicleJourney.vehicleRef}
+      position={[vehicle.monitoredVehicleJourney.vehicleLocation.latitude, vehicle.monitoredVehicleJourney.vehicleLocation.longitude]}
+    >
       <Popup>
         {`Bussi: ${vehicle.monitoredVehicleJourney.lineRef}`}<br />
         {`Nopeus: ${Math.floor(vehicle.monitoredVehicleJourney.speed)}km/h`}
