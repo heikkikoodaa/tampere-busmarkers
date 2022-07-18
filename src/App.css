@@ -13,3 +13,35 @@ body {
 .map {
   height: 100%;
 }
+
+.form-container {
+  padding: 2rem;
+  opacity: 0.8;
+  border-radius: 1rem;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 300px;
+  height: 200px;
+  top: 10vh;
+  left: 1rem;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.form-container:hover {
+  outline: 0.2rem solid blue;
+  overflow: scroll;
+}
+
+.form-container h2 {
+  padding: 0;
+  margin: 0;
+}
+
+.checkbox-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
