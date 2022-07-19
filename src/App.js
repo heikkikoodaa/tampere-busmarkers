@@ -61,9 +61,11 @@ function App() {
     return (
       <Marker key={vehicleRef} position={[latitude, longitude]}>
         <Popup>
-          {`Bussi: ${lineRef} : ${description}`}
+          {lineRef === '3' || lineRef === '1'
+            ? `Tram: ${lineRef} - ${description}`
+            : `Bus: ${lineRef} - ${description}`}
           <br />
-          {`Nopeus: ${Math.floor(speed)}km/h`}
+          {`Speed: ${Math.floor(speed)}km/h`}
         </Popup>
       </Marker>
     );
